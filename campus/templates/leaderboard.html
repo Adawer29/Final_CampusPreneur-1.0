@@ -32,36 +32,14 @@ th.a{width:200px;}
     <th class="b">Team Name</th>
     <th class="c">Level</th>
   </tr>
+  {%for user in users%}
   <tr>
-    <td>1</td>
-    <td>Hostel 1</td>
-    <td>10</td>
+    <td>{{forloop.counter}}</td>
+    <td>{{user.username}}</td>
+    <td>0</td>
   </tr>
-  <tr>
-    <td>2</td>
-    <td>Hostel 2</td>
-    <td>9</td>
-  </tr>
-  <tr>
-    <td>3</td>
-    <td>Hostel 3</td>
-    <td>8</td>
-  </tr>
-  <tr>
-    <td>4</td>
-    <td>Hostel 4</td>
-    <td>7</td>
-  </tr>
-  <tr>
-    <td>5</td>
-    <td>Hostel 5</td>
-    <td>6</td>
-  </tr>
-  <tr>
-    <td>6</td>
-    <td>Hostel 6</td>
-    <td>5</td>
-  </tr>
+  {%endfor%}
+
 </table>
      </div>
 
