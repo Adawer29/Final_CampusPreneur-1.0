@@ -15,19 +15,24 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
-from . import views
+from . import views,settings
+from django.conf import settings
+from django.conf.urls.static import static
+from django.contrib.staticfiles.urls import static
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.HomePage.as_view(),name='home'),
     path('new/',views.Redirection.as_view(),name='redirect'),
-    path('arena1/',views.Arena1.as_view(),name='level1'),
+    path('levels/',include('levels.urls',namespace='levels')),
     path('leaderboard/',views.Leaderboard.as_view(),name='leaderboard'),
     path('dashboard/',include('dashboard.urls',namespace='dashboard')),
     path('test/',views.TestPage.as_view(),name='test'),
     path('thanks/',views.ThanksPage.as_view(),name='thanks'),
     path('accounts/',include('accounts.urls',namespace='accounts')),
     path('accounts/',include('django.contrib.auth.urls')),
-
-
-
 ]
+urlpatterns += staticfiles_urlpatterns()
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+if settings.DEBUG is True:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
